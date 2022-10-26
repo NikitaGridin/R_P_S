@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      }
+
+      .content {
+        width: 60%;
+        background-color: rgb(127, 195, 255);
+        padding: 30px 0px;
+        border-radius: 20px;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .tools_me {
+        width: 20%;
+      }
+      .score {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+        margin: 0 auto;
+        font-weight: bold;
+        margin-bottom: 60px;
+      }
+      .block {
+        text-align: center;
+      }
+      .btn {
+        background-color: red;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .tools {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .img {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 300px;
+        margin-bottom: 60px;
+      }
+
+      .he_p {
+        -moz-transform: scale(-1, -1);
+        -o-transform: scale(-1, -1);
+        -webkit-transform: scale(-1, -1);
+        transform: scale(-1, -1);
+      }
+      .title {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        font-size: 96px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="title"></h2>
+    <div class="content">
+      <div class="score">
+        <div class="block">
+          All game
+          <div class="all_game">0</div>
+        </div>
+        <div class="block">
+          My win
+          <div class="count_win">0</div>
+        </div>
+        <div class="block">
+          Draw
+          <div class="draw">0</div>
+        </div>
+        <div class="block">
+          He wins
+          <div class="he_count_win">0</div>
+        </div>
+      </div>
+      <div class="img">
+        <img src="" alt="" class="he_p" width="120px" />
+        <img src="" alt="" class="p" width="120px" />
+      </div>
+      <div class="tools">
+        <div class="btn rock">Rock</div>
+        <div class="btn paper">Paper</div>
+        <div class="btn scissors">Scissors</div>
+      </div>
+    </div>
+    <script>
+      const rock = document.querySelector(".rock");
+      const paper = document.querySelector(".paper");
+      const scissors = document.querySelector(".scissors");
+      const p = document.querySelector(".p");
+      const he_p = document.querySelector(".he_p");
+      const title = document.querySelector(".title");
+
+      const he_rock = document.querySelector(".he_rock");
+      const he_paper = document.querySelector(".he_paper");
+      const he_scissors = document.querySelector(".he_scissors");
+
+      const count_win = document.querySelector(".count_win");
+      const he_count_win = document.querySelector(".he_count_win");
+      const all_game = document.querySelector(".all_game");
+      const draw = document.querySelector(".draw");
+
+      let a;
+      let all = 0;
+      let ag = 0;
+      let i = 0;
+      let yi = 0;
+      let dr = 0;
+      const arr = ["rock", "paper", "scissors"];
+      arr[1] = "rock";
+      arr[2] = "paper";
+      arr[3] = "scissors";
+      rock.addEventListener("click", () => {
+        all++;
+        all_game.innerHTML = all;
+        a = "rock";
+        if (a === "rock") {
+          p.src = "rock.png";
+          let b = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+          if (arr[b] === "rock") {
+            console.log("Ничья");
+            dr++;
+            draw.innerHTML = dr;
+            he_p.src = "rock.png";
+            title.innerHTML = "Ничья";
+          }
+          if (arr[b] === "paper") {
+            console.log("Проиграл");
+            yi++;
+            he_count_win.innerHTML = yi;
+            he_p.src = "paper.png";
+            title.innerHTML = "Проиграл";
+          }
+          he_count_win.innerHTML = yi;
+          if (arr[b] === "scissors") {
+            console.log("Победа");
+            i++;
+            count_win.innerHTML = i;
+            he_p.src = "scissors.png";
+            title.innerHTML = "Победа";
+          }
+        }
+      });
+      paper.addEventListener("click", () => {
+        all++;
+        all_game.innerHTML = all;
+        a = "paper";
+        if (a === "paper") {
+          p.src = "paper.png";
+          let b = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+          if (arr[b] === "rock") {
+            console.log("Победа");
+            i++;
+            count_win.innerHTML = i;
+            he_p.src = "rock.png";
+            title.innerHTML = "Победа";
+          }
+          if (arr[b] === "paper") {
+            console.log("Ничья");
+            dr++;
+            draw.innerHTML = dr;
+            he_p.src = "paper.png";
+            title.innerHTML = "Ничья";
+          }
+          if (arr[b] === "scissors") {
+            console.log("Проигрышь");
+            yi++;
+            he_count_win.innerHTML = yi;
+            he_p.src = "scissors.png";
+            title.innerHTML = "Проиграл";
+          }
+        }
+      });
+      scissors.addEventListener("click", () => {
+        all++;
+        all_game.innerHTML = all;
+        a = "scissors";
+        if (a === "scissors") {
+          p.src = "scissors.png";
+          let b = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+          if (arr[b] === "rock") {
+            console.log("Проигрышь");
+            yi++;
+            he_count_win.innerHTML = yi;
+            he_p.src = "rock.png";
+            title.innerHTML = "Проиграл";
+          }
+          if (arr[b] === "paper") {
+            console.log("Победа");
+            i++;
+            count_win.innerHTML = i;
+            he_p.src = "paper.png";
+            title.innerHTML = "Победа";
+          }
+          if (arr[b] === "scissors") {
+            console.log("Ничья");
+            dr++;
+            draw.innerHTML = dr;
+            he_p.src = "scissors.png";
+            title.innerHTML = "Ничья";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
